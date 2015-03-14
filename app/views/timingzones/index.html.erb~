@@ -1,0 +1,16 @@
+<div> Countries </div>
+<% if @timingzones.any? %>
+<% @timingzones.each do |t| %>
+	<%= link_to t.country, "http://en.wikipedia.org/wiki/#{t.country}" %>
+	<%=	link_to t.state, "http://en.wikipedia.org/wiki/#{t.state}" %>
+	<% if t.dst %>
+		<%= image_tag "DST.jpg", :width => 25, :height => 12 %>
+	<% end %>
+	<br/>
+<% end %>
+<% else %>
+<p> No timings scheduled </p>
+<% end %>
+<% if current_user %>
+<%= link_to 'Add', new_timingzone_path %>
+<% end %>

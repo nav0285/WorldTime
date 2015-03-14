@@ -1,0 +1,18 @@
+<div class="page-header">
+	<div class="row">
+		<div class="col-md-9">
+			<h2>WorldTime</h2>
+		</div>
+		<div class="col-md-3">
+			<% if current_user %>
+				<p><%= current_user.email %>|
+				<button type="button" class="btn btn-default"><%= link_to 'Sign Out', '#' %></button></p>
+			<% else %>
+					<div class="btn-group">
+					<a href='/users/sign_in' type="button" class="btn btn-default">SignIn</a>
+					<a href='/users/sign_up' type="button" class="btn btn-default">SignUp</a>	
+					</div>
+			<% end %>	
+		</div>
+	</div>
+</div>

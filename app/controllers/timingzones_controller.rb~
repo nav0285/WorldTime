@@ -14,7 +14,9 @@ rescue_from ArgumentError, with: :show_errors
 	
 	def create
 		@timingzone = Timingzone.new(timingzones_params)
-		@timingzone.dst = daylight(@timingzone.country, @timingzone.state)
+		@timez = daylight(@timingzone.country, @timingzone.state)
+		@timingzone.dst = @timez.dst?Time.now
+		@timingzone.zone_list = @timez.zone
 		if @timingzone.save
 			redirect_to root_url
 		else
@@ -30,8 +32,7 @@ private
 	
 	def daylight(country, state)
 		res = Geokit::Geocoders::GoogleGeocoder.geocode("#{state}, #{country}")
-		@timez = Timezone::Zone.new latlon: res.ll.split(',')
-		@timez.dst?Time.now
+		Timezone::Zone.new latlon: res.ll.split(',')
 	end
 	
 	def show_errors
