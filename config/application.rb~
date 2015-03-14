@@ -22,5 +22,6 @@ module WorldTime
     Timezone::Configure.begin do |c|
   		c.username = 'nav0285'
 		end
+		config.exceptions_app = self.routes
   end
 end

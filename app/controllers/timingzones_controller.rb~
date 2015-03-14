@@ -14,7 +14,7 @@ rescue_from ArgumentError, with: :show_errors
 	
 	def create
 		@timingzone = Timingzone.new(timingzones_params)
-		@timez = daylight(@timingzone.country, @timingzone.state)
+		@timez = daylight(@timingzone.country, @timingzone.state)   # Gets the Timezone with the entered inputs
 		@timingzone.dst = @timez.dst?Time.now
 		@timingzone.zone_list = @timez.zone
 		if @timingzone.save
